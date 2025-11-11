@@ -4,11 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingDiv = document.getElementById('loading');
     const resultDiv = document.getElementById('result');
 
-    const gameImage = document.getElementById('gameImage');
-    const gameTitle = document.getElementById('gameTitle');
-    const gameGenre = document.getElementById('gameGenre');
-    const gamePlatform = document.getElementById('gamePlatform');
-    const gameDescription = document.getElementById('gameDescription');
+    const quoteContent = document.getElementById('quoteContent');
+    const quoteAuthor = document.getElementById('quoteAuthor');
     const rawJson = document.getElementById('rawJson');
 
     fetchButton.addEventListener('click', getData);
@@ -19,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchButton.disabled = true;
         fetchButton.textContent = 'Memuat...';
 
-        fetch('https://www.freetogame.com/api/games?platform=pc')
+        fetch('https://api.quotable.io/random')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Gagal mengambil data dari API');
@@ -27,10 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(data => {
-                const randomIndex = Math.floor(Math.random() * data.length);
-                const randomGame = data[randomIndex];
-                
-                displayData(randomGame);
+                displayData(data);
             })
             .catch(error => {
                 console.error('Terjadi kesalahan:', error);
@@ -39,20 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
             .finally(() => {
                 loadingDiv.style.display = 'none';
                 fetchButton.disabled = false;
-                fetchButton.textContent = 'Tampilkan Game Acak';
+                fetchButton.textContent = 'Tampilkan Kutipan Baru';
             });
     }
 
-    function displayData(game) {
+    function displayData(data) {
         
-        gameImage.src = game.thumbnail;
-        gameImage.alt = game.title;
-        gameTitle.textContent = game.title;
-        gameGenre.textContent = game.genre;
-        gamePlatform.textContent = game.platform;
-        gameDescription.textContent = game.short_description;
+        quoteContent.textContent = data.content;
+        quoteAuthor.textContent = data.author;
 
-        rawJson.textContent = JSON.stringify(game, null, 2);
+        rawJson.textContent = JSON.stringify(data, null, 2);
 
         resultDiv.style.display = 'block';
     }

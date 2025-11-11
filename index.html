@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi API Game Gratis</title>
+    <title>Simulasi API Kutipan</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="container">
-        <h1>Simulasi API Game Gratis</h1>
-        <p>Mengambil data dari FreeToGame API</p>
-        
-        <button id="fetchButton">Tampilkan Game Acak</button>
+        <h1>Generator Kutipan Acak</h1>
+        <p>Mengambil data dari Quotable API</p>
+
+        <button id="fetchButton">Tampilkan Kutipan Baru</button>
 
         <div id="loading" style="display: none;">Memuat data...</div>
         <div id="result" style="display: none;">
-            
+
             <div class="result-card">
-                <img id="gameImage" src="" alt="Gambar Game">
-                <h3 id="gameTitle"></h3>
-                <p><strong>Genre:</strong> <span id="gameGenre"></span></p>
-                <p><strong>Platform:</strong> <span id="gamePlatform"></span></p>
-                <p><strong>Deskripsi:</strong> <span id="gameDescription"></span></p>
+                <h3 id="quoteContent"></h3>
+                <p>— <span id="quoteAuthor"></span></p>
             </div>
 
-            <h3>Data JSON (untuk 1 Game)</h3>
+            <h3>Data JSON yang Diterima</h3>
             <div class="json-viewer">
                 <pre id="rawJson"></pre>
             </div>
@@ -34,4 +33,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
