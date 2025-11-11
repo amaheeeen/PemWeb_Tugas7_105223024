@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingDiv = document.getElementById('loading');
     const resultDiv = document.getElementById('result');
 
+    // Elemen untuk hasil (disesuaikan dengan HTML baru)
     const quoteContent = document.getElementById('quoteContent');
     const quoteAuthor = document.getElementById('quoteAuthor');
     const rawJson = document.getElementById('rawJson');
