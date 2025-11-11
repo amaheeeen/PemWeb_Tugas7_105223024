@@ -4,27 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi API Kutipan</title>
+    <title>Simulasi API Tumpukan Kartu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <div class="container">
-        <h1>Generator Kutipan Acak</h1>
-        <p>Mengambil data dari Quotable API</p>
+        <h1>Simulasi API Tumpukan Kartu</h1>
+        <p>Menarik kartu acak dari Deck of Cards API</p>
 
-        <button id="fetchButton">Tampilkan Kutipan Baru</button>
+        <button id="fetchButton">Tarik Kartu Acak</button>
 
-        <div id="loading" style="display: none;">Memuat data...</div>
+        <div id="loading" style="display: none;">Menarik kartu...</div>
         <div id="result" style="display: none;">
 
             <div class="result-card">
-                <h3 id="quoteContent"></h3>
-                <p>— <span id="quoteAuthor"></span></p>
+                <img id="cardImage" src="" alt="Gambar Kartu" class="card-image">
+                <h3 id="cardValue"></h3>
+                <p>Jenis: <span id="cardSuit"></span></p>
             </div>
 
-            <h3>Data JSON yang Diterima</h3>
+            <h3>Data JSON (untuk 1 Kartu)</h3>
             <div class="json-viewer">
                 <pre id="rawJson"></pre>
             </div>

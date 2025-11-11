@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingDiv = document.getElementById('loading');
     const resultDiv = document.getElementById('result');
 
-    // Elemen untuk hasil (disesuaikan dengan HTML baru)
-    const quoteContent = document.getElementById('quoteContent');
-    const quoteAuthor = document.getElementById('quoteAuthor');
+    const cardImage = document.getElementById('cardImage');
+    const cardValue = document.getElementById('cardValue');
+    const cardSuit = document.getElementById('cardSuit');
     const rawJson = document.getElementById('rawJson');
 
     fetchButton.addEventListener('click', getData);
@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingDiv.style.display = 'block';
         resultDiv.style.display = 'none';
         fetchButton.disabled = true;
-        fetchButton.textContent = 'Memuat...';
+        fetchButton.textContent = 'Menarik...';
 
-        fetch('https://api.quotable.io/random')
+        fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=1')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Gagal mengambil data dari API');
@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(data => {
-                displayData(data);
+                const drawnCard = data.cards[0];
+
+                displayData(drawnCard);
             })
             .catch(error => {
                 console.error('Terjadi kesalahan:', error);
@@ -34,16 +36,18 @@ document.addEventListener('DOMContentLoaded', () => {
             .finally(() => {
                 loadingDiv.style.display = 'none';
                 fetchButton.disabled = false;
-                fetchButton.textContent = 'Tampilkan Kutipan Baru';
+                fetchButton.textContent = 'Tarik Kartu Acak';
             });
     }
 
-    function displayData(data) {
-        
-        quoteContent.textContent = data.content;
-        quoteAuthor.textContent = data.author;
+    function displayData(card) {
 
-        rawJson.textContent = JSON.stringify(data, null, 2);
+        cardImage.src = card.image;
+        cardImage.alt = `${card.value} of ${card.suit}`;
+        cardValue.textContent = card.value;
+        cardSuit.textContent = card.suit;
+
+        rawJson.textContent = JSON.stringify(card, null, 2);
 
         resultDiv.style.display = 'block';
     }
